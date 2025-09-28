@@ -226,9 +226,7 @@ def translate_rna_to_protein():
 def findingMotif(text, motif):
     i=0
     while i <=(len(text)-len(motif)):
-    
-        temp=text[i:i+len(motif)]
-        if temp==motif:
+        if text[i:i+len(motif)]==motif:
             print(i+1,end=" ")
         i+=1
 data=loadDataset("subs")
