@@ -233,19 +233,15 @@ def MostLikelyCommonAncestor(dna):
     tempCol=""
     l=len(dna[0])
     countMatrix={"A":[0]*l,"C":[0]*l,"G":[0]*l,"T":[0]*l}
-    
     for row in range(len(dna)):
         for i in range(len(dna[0])):
             symbol=dna[row][i]
             countMatrix[symbol][i]+=1
-    
-    # Build consensus sequence
     for i in range(l):
         A=countMatrix["A"][i]
         C=countMatrix["C"][i]
         G=countMatrix["G"][i]
         T=countMatrix["T"][i]
-        # Find the nucleotide with the highest count at position i
         max_count = max(A, C, G, T)
         if A == max_count:
             tempCol+="A"
@@ -255,18 +251,13 @@ def MostLikelyCommonAncestor(dna):
             tempCol+="G"
         elif T == max_count:
             tempCol+="T"
-
-    
-    output_folder = r"C:\Users\Sadnan\Documents\University\Rosalind_Coding\outputs"
+    output_folder=r"C:\Users\Sadnan\Documents\University\Rosalind_Coding\outputs"
     
     
     
     output_file = os.path.join(output_folder, "consensus_output.txt")
     with open(output_file, 'w') as f:
-        # Write consensus sequence
         f.write(tempCol + "\n")
-        
-        # Write count matrix in the required format
         for nucleotide in ['A', 'C', 'G', 'T']:
             f.write(f"{nucleotide}: {' '.join(map(str, countMatrix[nucleotide]))}\n")
     
@@ -274,16 +265,7 @@ def MostLikelyCommonAncestor(dna):
     print(f"Consensus: {tempCol}")
     
     return tempCol, countMatrix
-dna=[
-    ['A', 'T', 'C', 'C', 'A', 'G', 'C', 'T'],
-    ['G', 'G', 'G', 'C', 'A', 'A', 'C', 'T'],
-    ['A', 'T', 'G', 'G', 'A', 'T', 'C', 'T'],
-    ['A', 'A', 'G', 'C', 'A', 'A', 'C', 'C'],
-    ['T', 'T', 'G', 'G', 'A', 'A', 'C', 'T'],
-    ['A', 'T', 'G', 'C', 'C', 'A', 'T', 'T'],
-    ['A', 'T', 'G', 'G', 'C', 'A', 'C', 'T']
-]
-data=loadDataset("cons")
+
 def parse_to_dna_matrix(input_text):
     sequences = []
     current_seq = []
@@ -301,6 +283,5 @@ def parse_to_dna_matrix(input_text):
     # Convert sequences to 2D matrix (list of lists of chars)
     dna_matrix = [list(seq) for seq in sequences]
     return dna_matrix
-MostLikelyCommonAncestor(parse_to_dna_matrix(data))
 
-# MostLikelyCommonAncestor(dna)
+
