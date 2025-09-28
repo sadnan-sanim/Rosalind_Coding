@@ -224,12 +224,13 @@ def translate_rna_to_protein():
 
 # Finding a Motif in DNA
 def findingMotif(text, motif):
+    i=0
+    while i <=(len(text)-len(motif)):
     
-    for i in range(len(text)):
-        if i<=(len(text)-len(motif)):
-            temp=text[i:i+len(motif)]
-            if temp==motif:
-                print(i+1,end=" ")
+        temp=text[i:i+len(motif)]
+        if temp==motif:
+            print(i+1,end=" ")
+        i+=1
 data=loadDataset("subs")
 text,motif=list(data.strip("\n").split("\n"))
 findingMotif(text,motif)
