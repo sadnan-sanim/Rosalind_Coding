@@ -1,35 +1,3 @@
-import re
-import os
-
-def loadDataset(problem_id):
-    """
-    Load dataset for a given Rosalind problem.
-    
-    Args:
-        problem_id (str): The problem identifier (e.g., 'dna', 'rna', 'revc', etc.)
-        
-    Returns:
-        str: Contents of the dataset file, or None if file not found
-        
-    Example:
-        loadDataset('dna') -> loads rosalind_dna.txt
-        loadDataset('gc') -> loads rosalind_gc.txt
-    """
-    base_path = r"C:\Users\Sadnan\Documents\University\Rosalind_Coding\datasets"
-    filename = f"rosalind_{problem_id}.txt"
-    full_path = os.path.join(base_path, filename)
-    
-    try:
-        with open(full_path, 'r') as file:
-            content = file.read()
-        return content
-    except FileNotFoundError:
-        print(f"Dataset file not found: {filename}")
-        return None
-    except Exception as e:
-        print(f"Error reading dataset file {filename}: {e}")
-        return None
-
 def count_nucleotides():
     """Count nucleotides in DNA string from rosalind_dna.txt"""
     path = r"C:\Users\Sadnan\Documents\University\Rosalind_Coding\datasets\rosalind_dna.txt"
@@ -221,15 +189,3 @@ def translate_rna_to_protein():
     
     print(out)
     return out
-
-# Finding a Motif in DNA
-def findingMotif(text, motif):
-    
-    for i in range(len(text)):
-        if i<=(len(text)-len(motif)):
-            temp=text[i:i+len(motif)]
-            if temp==motif:
-                print(i+1,end=" ")
-data=loadDataset("subs")
-text,motif=list(data.strip("\n").split("\n"))
-findingMotif(text,motif)
